@@ -7,8 +7,7 @@
 
 using namespace std;
 
-
-//user prompt for calculations
+//user display class
 class Display {
 
 public:
@@ -20,30 +19,34 @@ public:
         //window loop
         while (window.isOpen())
         {
-            // check all the window's events that were triggered since the last iteration of the loop
+            // check all the window's events that 
+            //were triggered since the last iteration of the loop
             while (window.pollEvent(event))
             {
 
-             //   window.clear(sf::Color::Black);
-
-
+                ///////////////////////////////////////
+                // 
                 //switch case check two possible events
+                //
+                // 1.) "close requested" event: we close the window
+                //
+                // 2.) Case for button push(left mouse click)
+                //
+                ///////////////////////////////////////
+
                 switch (event.type) {
-                    // "close requested" event: we close the window
+
                 case sf::Event::Closed:
                     window.close();
                     break;
-                    //case for button push(left mouse click)
+
                 case (sf::Event::MouseButtonPressed):
                     //button constuctor 
                     // buttons(); 
 
                 default:
                     break;
-
-
                 }
-               // window.display();
                 return; 
 
             }
