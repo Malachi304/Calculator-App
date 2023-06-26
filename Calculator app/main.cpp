@@ -7,6 +7,29 @@
 
 using namespace std;
 
+
+//SFML interface for calculator
+class Buttons {
+public:
+
+    //void Button();
+
+    void button(sf::Vector2f size) {
+       
+        shape.setSize(size);
+        shape.setFillColor(sf::Color(100, 250, 50));
+
+    }
+
+    void draw(sf::RenderWindow& window) {
+        window.draw(shape);
+    }
+private:
+
+    sf::RectangleShape shape;
+    sf::Vector2f size;
+};
+
 //user display class
 class Display {
 
@@ -16,10 +39,17 @@ public:
     void mainDisplay() {
         sf::RenderWindow window(sf::VideoMode(300, 450), "My Window");
 
+        // Set frame rate limit to 60 FPS
+        window.setFramerateLimit(60); 
+
+
         //window loop
         while (window.isOpen())
         {
 
+            Buttons button1;
+            button1.button({ 300,75 }); 
+          
             // check all the window's events that 
             //were triggered since the last iteration of the loop
             while (window.pollEvent(event))
@@ -35,9 +65,7 @@ public:
                 //
                 ///////////////////////////////////////
 
-                ButtonDisplay(window);
-                window.display();
-
+                // ButtonDisplay(window);
 
                 switch (event.type) {
 
@@ -52,46 +80,21 @@ public:
                 default:
                     break;
                 }
-               // return; 
+
+                button1.draw(window);
+
+                window.display();
+
             }
 
         }
     }
 
 private: 
-   // sf::RenderWindow window(sf::VideoMode(800, 600), "My Window");
     sf::Event event;
-    
-    void ButtonDisplay(sf::RenderWindow& window) {
-
-        ////////////////////////////
-        //
-        // Function for Button diplay ontop of calculator display
-        // Called inside display function to show buttons 
-        //
-        ////////////////////////////
-
-        //main text box
-        sf::RectangleShape rectangle(sf::Vector2f(100, 50));
-        rectangle.setFillColor(sf::Color::Red);
-        rectangle.setPosition(100, 100);
-        window.draw(rectangle);
-       // window.draw(rec1);
-
-       
-    }
-};
-
-
-//SFML interface for calculator
-class buttons {
-public:
-
-
-private:
-
 
 };
+
 
 //Mathematical procedures
 class claculator {
