@@ -1,5 +1,5 @@
 #include <iostream>
-#include "sfml/Graphics.hpp"
+#include "SFML/Graphics.hpp"
 #include <SFML/OpenGL.hpp>
 #include <cmath>
 #include <string>
@@ -14,11 +14,12 @@ public:
     
     //calculator display
     void mainDisplay() {
-        window.create(sf::VideoMode(300, 400), "My window"); 
+        sf::RenderWindow window(sf::VideoMode(300, 450), "My Window");
 
         //window loop
         while (window.isOpen())
         {
+
             // check all the window's events that 
             //were triggered since the last iteration of the loop
             while (window.pollEvent(event))
@@ -34,6 +35,10 @@ public:
                 //
                 ///////////////////////////////////////
 
+                ButtonDisplay(window);
+                window.display();
+
+
                 switch (event.type) {
 
                 case sf::Event::Closed:
@@ -47,16 +52,34 @@ public:
                 default:
                     break;
                 }
-                return; 
-
+               // return; 
             }
+
         }
     }
 
 private: 
-    sf::RenderWindow window;
+   // sf::RenderWindow window(sf::VideoMode(800, 600), "My Window");
     sf::Event event;
+    
+    void ButtonDisplay(sf::RenderWindow& window) {
 
+        ////////////////////////////
+        //
+        // Function for Button diplay ontop of calculator display
+        // Called inside display function to show buttons 
+        //
+        ////////////////////////////
+
+        //main text box
+        sf::RectangleShape rectangle(sf::Vector2f(100, 50));
+        rectangle.setFillColor(sf::Color::Red);
+        rectangle.setPosition(100, 100);
+        window.draw(rectangle);
+       // window.draw(rec1);
+
+       
+    }
 };
 
 
@@ -80,6 +103,7 @@ int main()
     //call display constructor
     Display display; 
     display.mainDisplay(); 
+
 
    
 
