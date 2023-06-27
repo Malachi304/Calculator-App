@@ -14,11 +14,14 @@ public:
 
     //void Button();
 
-    void button(sf::Vector2f size) {
+    void button(sf::Vector2f size, sf::Vector2f position) {
        
         shape.setSize(size);
-        shape.setFillColor(sf::Color(100, 250, 50));
+        shape.setFillColor(sf::Color::White);
+        shape.setOutlineThickness(5); 
+        shape.setOutlineColor(sf::Color(0, 0, 0));
 
+        shape.setPosition(position); 
     }
 
     void draw(sf::RenderWindow& window) {
@@ -47,8 +50,18 @@ public:
         while (window.isOpen())
         {
 
-            Buttons button1;
-            button1.button({ 300,75 }); 
+            Buttons button0 ,button1,  button2, button3, button4, button5, button6, button7, button8, button9;
+            button0.button({ 300,75 }, {0.f, 0.f});
+            button1.button({ 50,50 }, {});
+            //button2.button({ 50,50 }, {});
+            //button3.button({ 50,50 }, {});
+            //button4.button({ 50,50 }, {});
+            //button5.button({ 50,50 }, {});
+            //button6.button({ 50,50 }, {});
+            //button7.button({ 50,50 }, {});
+            //button8.button({ 50,50 }, {});
+           // button9.button({ 50,50 }, {});
+
           
             // check all the window's events that 
             //were triggered since the last iteration of the loop
@@ -74,14 +87,13 @@ public:
                     break;
 
                 case (sf::Event::MouseButtonPressed):
-                    //button constuctor 
-                    // buttons(); 
+               
 
                 default:
                     break;
                 }
 
-                button1.draw(window);
+                button0.draw(window);
 
                 window.display();
 
