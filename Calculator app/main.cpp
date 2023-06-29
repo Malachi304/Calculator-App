@@ -73,12 +73,16 @@ public:
             button12.button({ 75,75 }, { 160.f, 345.f });
 
            //utilities
-            button_del.button({ 75,40 }, {240.f, 105.f});
-            button_div.button({ 75,40 }, { 240.f, 150.f });
-            button_mul.button({ 75,40 }, { 240.f, 195.f });
-            button_add.button({ 75,40 }, { 240.f, 240.f });
-            button_sub.button({ 75,40 }, { 240.f, 285.f });
-            button_ans.button({ 75,40 }, { 240.f, 330.f });
+            int x_space = 5; 
+            int y_space = 105.f;
+            int max_y = 345.f; 
+
+            button_del.button({ 75,45 }, {240.f, 105.f});
+            button_div.button({ 75,45 }, { 240.f, 160.f });
+            button_mul.button({ 75,45 }, { 240.f, 215.f });
+            button_add.button({ 75,45 }, { 240.f, 270.f });
+            button_sub.button({ 75,45 }, { 240.f, 325.f });
+            button_ans.button({ 75,45 }, { 240.f, 380.f });
 
           
             // check all the window's events that 
@@ -149,6 +153,10 @@ private:
 //Mathematical procedures
 class claculator {
 
+    
+    void operation() {
+
+    }
 };
 
 int main()
