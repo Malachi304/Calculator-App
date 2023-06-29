@@ -18,8 +18,8 @@ public:
        
         shape.setSize(size);
         shape.setFillColor(sf::Color::White);
-        shape.setOutlineThickness(5); 
-        shape.setOutlineColor(sf::Color(0, 0, 0));
+       // shape.setOutlineThickness(5); 
+      //  shape.setOutlineColor(sf::Color(0, 0, 0));
 
         shape.setPosition(position); 
     }
@@ -30,7 +30,6 @@ public:
 private:
 
     sf::RectangleShape shape;
-    sf::Vector2f size;
 };
 
 //user display class
@@ -40,7 +39,7 @@ public:
     
     //calculator display
     void mainDisplay() {
-        sf::RenderWindow window(sf::VideoMode(300, 450), "My Window");
+        sf::RenderWindow window(sf::VideoMode(300, 425), "My Window");
 
         // Set frame rate limit to 60 FPS
         window.setFramerateLimit(60); 
@@ -49,17 +48,17 @@ public:
         //window loop
         while (window.isOpen())
         {
-
+            //each button needs a 75x 
             Buttons button0 ,button1,  button2, button3, button4, button5, button6, button7, button8, button9;
-            button0.button({ 300,75 }, {0.f, 0.f});
-            button1.button({ 50,50 }, {});
-            //button2.button({ 50,50 }, {});
-            //button3.button({ 50,50 }, {});
-            //button4.button({ 50,50 }, {});
-            //button5.button({ 50,50 }, {});
-            //button6.button({ 50,50 }, {});
-            //button7.button({ 50,50 }, {});
-            //button8.button({ 50,50 }, {});
+            button0.button({ 300,100 }, {0.f, 0.f});
+            button1.button({ 75,75 }, {0.f, 105.f});
+            button2.button({ 75,75 }, {0.f, 185.f});
+            button3.button({ 75,75 }, {0.f, 265.f});
+            button4.button({ 75,75 }, {0.f, 345.f});
+            button5.button({ 75,75 }, {80.f,105.f});
+            button6.button({ 75,75 }, {80.f, 185.f});
+            button7.button({ 75,75 }, {80.f, 265.f});
+            button8.button({ 75,75 }, {80.f, 345.f});
            // button9.button({ 50,50 }, {});
 
           
@@ -93,7 +92,20 @@ public:
                     break;
                 }
 
+                //head
                 button0.draw(window);
+                //first collumn
+                button1.draw(window); 
+                button2.draw(window);
+                button3.draw(window); 
+                button4.draw(window);
+                //second collumn
+                button5.draw(window); 
+                button6.draw(window);
+                button7.draw(window); 
+                button8.draw(window);
+                //thirst collumn
+                //button9.draw(window);
 
                 window.display();
 
