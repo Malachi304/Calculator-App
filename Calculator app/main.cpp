@@ -49,17 +49,36 @@ public:
         while (window.isOpen())
         {
             //each button needs a 75x 
-            Buttons button0 ,button1,  button2, button3, button4, button5, button6, button7, button8, button9;
+            Buttons button0, button1, button2, button3, button4, button5, button6,
+                button7, button8, button9, button10, button11, button12,
+                button_del, button_div, button_mul, button_add, button_sub, button_ans;
+
+
+            //main screen
             button0.button({ 300,100 }, {0.f, 0.f});
+            //first collum
             button1.button({ 75,75 }, {0.f, 105.f});
             button2.button({ 75,75 }, {0.f, 185.f});
             button3.button({ 75,75 }, {0.f, 265.f});
             button4.button({ 75,75 }, {0.f, 345.f});
+            //second collumn
             button5.button({ 75,75 }, {80.f,105.f});
             button6.button({ 75,75 }, {80.f, 185.f});
             button7.button({ 75,75 }, {80.f, 265.f});
             button8.button({ 75,75 }, {80.f, 345.f});
-           // button9.button({ 50,50 }, {});
+            //third collumn
+            button9.button({ 75,75 }, {160.f, 105.f});
+            button10.button({ 75,75 }, {160.f, 185.f});
+            button11.button({ 75,75 }, {160.f, 265.f});
+            button12.button({ 75,75 }, { 160.f, 345.f });
+
+           //utilities
+            button_del.button({ 75,40 }, {240.f, 105.f});
+            button_div.button({ 75,40 }, { 240.f, 150.f });
+            button_mul.button({ 75,40 }, { 240.f, 195.f });
+            button_add.button({ 75,40 }, { 240.f, 240.f });
+            button_sub.button({ 75,40 }, { 240.f, 285.f });
+            button_ans.button({ 75,40 }, { 240.f, 330.f });
 
           
             // check all the window's events that 
@@ -94,18 +113,25 @@ public:
 
                 //head
                 button0.draw(window);
-                //first collumn
                 button1.draw(window); 
                 button2.draw(window);
                 button3.draw(window); 
                 button4.draw(window);
-                //second collumn
                 button5.draw(window); 
                 button6.draw(window);
                 button7.draw(window); 
                 button8.draw(window);
-                //thirst collumn
-                //button9.draw(window);
+                button9.draw(window);
+                button10.draw(window);
+                button11.draw(window);
+                button12.draw(window);
+                button_del.draw(window); 
+                button_div.draw(window);
+                button_mul.draw(window);
+                button_add.draw(window);
+                button_sub.draw(window);
+                button_ans.draw(window);
+
 
                 window.display();
 
