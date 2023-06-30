@@ -20,7 +20,6 @@ public:
         shape.setFillColor(sf::Color::White);
        // shape.setOutlineThickness(5); 
       //  shape.setOutlineColor(sf::Color(0, 0, 0));
-
         shape.setPosition(position); 
     }
 
@@ -44,45 +43,39 @@ public:
         // Set frame rate limit to 60 FPS
         window.setFramerateLimit(60); 
 
+        //each button needs a 75x 
+        Buttons button[13], util_button[5];
+
+        //main screen
+        button[0].button({ 300,100 }, { 0.f, 0.f });
+        //first collum
+        button[1].button({ 75,75 }, { 0.f, 105.f });
+        button[2].button({ 75,75 }, { 0.f, 185.f });
+        button[3].button({ 75,75 }, { 0.f, 265.f });
+        button[4].button({ 75,75 }, { 0.f, 345.f });
+        //second collumn
+        button[5].button({ 75,75 }, { 80.f,105.f });
+        button[6].button({ 75,75 }, { 80.f, 185.f });
+        button[7].button({ 75,75 }, { 80.f, 265.f });
+        button[8].button({ 75,75 }, { 80.f, 345.f });
+        //third collumn
+        button[9].button({ 75,75 }, { 160.f, 105.f });
+        button[10].button({ 75,75 }, { 160.f, 185.f });
+        button[11].button({ 75,75 }, { 160.f, 265.f });
+        button[12].button({ 75,75 }, { 160.f, 345.f });
+
+        util_button[0].button({ 75,45 }, { 240.f, 105.f });
+        util_button[1].button({ 75,45 }, { 240.f, 160.f });
+        util_button[2].button({ 75,45 }, { 240.f, 215.f });
+        util_button[3].button({ 75,45 }, { 240.f, 270.f });
+        util_button[4].button({ 75,95 }, { 240.f, 325.f });
+
+
 
         //window loop
         while (window.isOpen())
         {
-            //each button needs a 75x 
-            Buttons button0, button1, button2, button3, button4, button5, button6,
-                button7, button8, button9, button10, button11, button12,
-                button_del, button_div, button_mul, button_add, button_sub, button_ans;
 
-
-            //main screen
-            button0.button({ 300,100 }, {0.f, 0.f});
-            //first collum
-            button1.button({ 75,75 }, {0.f, 105.f});
-            button2.button({ 75,75 }, {0.f, 185.f});
-            button3.button({ 75,75 }, {0.f, 265.f});
-            button4.button({ 75,75 }, {0.f, 345.f});
-            //second collumn
-            button5.button({ 75,75 }, {80.f,105.f});
-            button6.button({ 75,75 }, {80.f, 185.f});
-            button7.button({ 75,75 }, {80.f, 265.f});
-            button8.button({ 75,75 }, {80.f, 345.f});
-            //third collumn
-            button9.button({ 75,75 }, {160.f, 105.f});
-            button10.button({ 75,75 }, {160.f, 185.f});
-            button11.button({ 75,75 }, {160.f, 265.f});
-            button12.button({ 75,75 }, { 160.f, 345.f });
-
-           //utilities
-            int x_space = 5; 
-            int y_space = 105.f;
-            int max_y = 345.f; 
-
-            button_del.button({ 75,45 }, {240.f, 105.f});
-            button_div.button({ 75,45 }, { 240.f, 160.f });
-            button_mul.button({ 75,45 }, { 240.f, 215.f });
-            button_add.button({ 75,45 }, { 240.f, 270.f });
-            button_sub.button({ 75,45 }, { 240.f, 325.f });
-            button_ans.button({ 75,45 }, { 240.f, 380.f });
 
           
             // check all the window's events that 
@@ -115,26 +108,14 @@ public:
                     break;
                 }
 
-                //head
-                button0.draw(window);
-                button1.draw(window); 
-                button2.draw(window);
-                button3.draw(window); 
-                button4.draw(window);
-                button5.draw(window); 
-                button6.draw(window);
-                button7.draw(window); 
-                button8.draw(window);
-                button9.draw(window);
-                button10.draw(window);
-                button11.draw(window);
-                button12.draw(window);
-                button_del.draw(window); 
-                button_div.draw(window);
-                button_mul.draw(window);
-                button_add.draw(window);
-                button_sub.draw(window);
-                button_ans.draw(window);
+                
+                for (int i = 0; i < 13; i++) {
+                    button[i].draw(window); 
+            }
+                for (int i = 0; i < 5; i++) {
+                    util_button[i].draw(window);
+                }
+               
 
 
                 window.display();
