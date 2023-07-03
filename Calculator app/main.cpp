@@ -8,7 +8,7 @@
 using namespace std;
 
 
-//SFML interface for calculator
+
 class Buttons {
 public:
 
@@ -19,26 +19,36 @@ public:
         shape.setSize(size);
         shape.setFillColor(sf::Color::White);
        // shape.setOutlineThickness(5); 
-      //  shape.setOutlineColor(sf::Color(0, 0, 0));
+       //  shape.setOutlineColor(sf::Color(0, 0, 0));
         shape.setPosition(position); 
+        
+
+    }
+
+    void setText() {
+
     }
 
     void draw(sf::RenderWindow& window) {
         window.draw(shape);
     }
+    
+
+    
 private:
 
     sf::RectangleShape shape;
+    sf::Text text; 
 };
 
-//user display class
+//user interface
 class Display {
 
 public:
     
     //calculator display
     void mainDisplay() {
-        sf::RenderWindow window(sf::VideoMode(300, 425), "My Window");
+        sf::RenderWindow window(sf::VideoMode(300, 425), "Calculator");
 
         // Set frame rate limit to 60 FPS
         window.setFramerateLimit(60); 
@@ -49,29 +59,31 @@ public:
         //main screen
         button[0].button({ 300,100 }, { 0.f, 0.f });
         //first collum
-        button[1].button({ 75,75 }, { 0.f, 105.f });
-        button[2].button({ 75,75 }, { 0.f, 185.f });
-        button[3].button({ 75,75 }, { 0.f, 265.f });
-        button[4].button({ 75,75 }, { 0.f, 345.f });
+
+        float x = 75;
+        float posY = 105;
+
+        button[1].button({ x,x }, { 0.f, posY });
+        button[2].button({ x,x }, { 0.f, posY + 80 });
+        button[3].button({ x,x }, { 0.f, posY + 160 });
+        button[4].button({ x,x }, { 0.f, posY + 240 });
         //second collumn
-        button[5].button({ 75,75 }, { 80.f,105.f });
-        button[6].button({ 75,75 }, { 80.f, 185.f });
-        button[7].button({ 75,75 }, { 80.f, 265.f });
-        button[8].button({ 75,75 }, { 80.f, 345.f });
+        button[5].button({ x,x }, { 80.f, posY });
+        button[6].button({ x,x }, { 80.f, posY + 80 });
+        button[7].button({ x,x }, { 80.f, posY + 160 });
+        button[8].button({ x,x }, { 80.f, posY + 240 });
         //third collumn
-        button[9].button({ 75,75 }, { 160.f, 105.f });
-        button[10].button({ 75,75 }, { 160.f, 185.f });
-        button[11].button({ 75,75 }, { 160.f, 265.f });
-        button[12].button({ 75,75 }, { 160.f, 345.f });
+        button[9].button({ x,x }, { 160.f, posY });
+        button[10].button({ x,x }, { 160.f, posY + 80 });
+        button[11].button({ x,x }, { 160.f, posY + 160 });
+        button[12].button({ x,x }, { 160.f, posY + 240 });
 
-        util_button[0].button({ 75,45 }, { 240.f, 105.f });
-        util_button[1].button({ 75,45 }, { 240.f, 160.f });
-        util_button[2].button({ 75,45 }, { 240.f, 215.f });
-        util_button[3].button({ 75,45 }, { 240.f, 270.f });
-        util_button[4].button({ 75,95 }, { 240.f, 325.f });
-
-
-
+        //utilities
+        util_button[0].button({ x,45 }, { 240.f, posY });
+        util_button[1].button({ x,45 }, { 240.f, posY + 55 });
+        util_button[2].button({ x,45 }, { 240.f, posY + 110 });
+        util_button[3].button({ x,45 }, { 240.f, posY + 165 });
+        util_button[4].button({ x,95 }, { 240.f, posY + 220 });
         //window loop
         while (window.isOpen())
         {
@@ -116,8 +128,6 @@ public:
                     util_button[i].draw(window);
                 }
                
-
-
                 window.display();
 
             }
