@@ -17,9 +17,9 @@ public:
     void button(sf::Vector2f size, sf::Vector2f position) {
        
         shape.setSize(size);
-        shape.setFillColor(sf::Color::White);
-       // shape.setOutlineThickness(5); 
-       //  shape.setOutlineColor(sf::Color(0, 0, 0));
+        shape.setFillColor(sf::Color(30,30,30));
+        shape.setOutlineThickness(5); 
+        shape.setOutlineColor(sf::Color(135,206,235));
         shape.setPosition(position); 
         
 
@@ -56,13 +56,14 @@ public:
         //each button needs a 75x 
         Buttons button[13], util_button[5];
 
+        //size of numbered buttons
+        float x = 75;
+        //minimum y position 
+        float posY = 105;
+
         //main screen
         button[0].button({ 300,100 }, { 0.f, 0.f });
         //first collum
-
-        float x = 75;
-        float posY = 105;
-
         button[1].button({ x,x }, { 0.f, posY });
         button[2].button({ x,x }, { 0.f, posY + 80 });
         button[3].button({ x,x }, { 0.f, posY + 160 });
@@ -85,9 +86,14 @@ public:
         util_button[3].button({ x,45 }, { 240.f, posY + 165 });
         util_button[4].button({ x,95 }, { 240.f, posY + 220 });
         //window loop
+
+
+        // Enable anti-aliasing for the square
+        //sf::ContextSettings settings;
+        //settings.antialiasingLevel = 100;
+
         while (window.isOpen())
         {
-
 
           
             // check all the window's events that 
@@ -111,7 +117,7 @@ public:
 
                 case sf::Event::Closed:
                     window.close();
-                    break;
+                    break; 
 
                 case (sf::Event::MouseButtonPressed):
                
