@@ -65,7 +65,8 @@ public:
         window.setFramerateLimit(60); 
 
         //each button needs a 75x 
-        Buttons button[13], util_button[5], text[11];
+       // Buttons button[13], util_button[5], text[11];
+        std::vector<Buttons> button(13), util_button(5), text(11); 
 
         //size of numbered buttons
         float x = 75;
