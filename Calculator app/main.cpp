@@ -20,17 +20,28 @@ public:
         shape.setFillColor(sf::Color(30,30,30));
         shape.setOutlineThickness(5); 
         shape.setOutlineColor(sf::Color(135,206,235));
-        shape.setPosition(position); 
-        
+        shape.setPosition(position);         
 
     }
 
-    void setText() {
+    void setText(string str, sf::Vector2f position) {
 
+        sf::Font font; 
+        if (!font.loadFromFile("C:\Fonts")) {
+            cout << "Font load error"; 
+            return; 
+        }
+
+        text.setFont(font);
+        text.setCharacterSize(10); 
+        text.setFillColor(sf::Color(30,30,30)); 
+        text.setPosition(position); 
     }
+
 
     void draw(sf::RenderWindow& window) {
         window.draw(shape);
+        window.draw(text); 
     }
     
 
@@ -54,7 +65,7 @@ public:
         window.setFramerateLimit(60); 
 
         //each button needs a 75x 
-        Buttons button[13], util_button[5];
+        Buttons button[13], util_button[5], text[11];
 
         //size of numbered buttons
         float x = 75;
@@ -85,13 +96,14 @@ public:
         util_button[2].button({ x,45 }, { 240.f, posY + 110 });
         util_button[3].button({ x,45 }, { 240.f, posY + 165 });
         util_button[4].button({ x,95 }, { 240.f, posY + 220 });
-        //window loop
+       
 
 
         // Enable anti-aliasing for the square
-        //sf::ContextSettings settings;
-        //settings.antialiasingLevel = 100;
+        sf::ContextSettings settings;
+        settings.antialiasingLevel = 8; 
 
+        //window loop
         while (window.isOpen())
         {
 
