@@ -91,9 +91,9 @@ public:
         std::vector<Text> textBox(12);
 
         //size of numbered buttons
-        float x = 75;
+       // float x = 75;
         //minimum y position 
-        float posY = 105;
+       // float posY = 105;
 
 
 
@@ -102,7 +102,7 @@ public:
         //main screen
         button[0].button({ 300,100 }, { 0.f, 0.f });
         //first collum
-        button[1].button({ x,x }, { 0.f, posY });
+       // button[1].button({ x,x }, { 0.f, posY });
 
         /*
         // Get the local bounds of the text
@@ -115,6 +115,26 @@ public:
         */
       //  textBox[1].setText("1", { (x/2) - 25,  posY });
 
+        int count = 0; 
+        float posY = 105.f, posX = 0.f, x = 75.f;
+
+        for (int i = 1; i < 13; i++) {
+
+         
+            button[i].button({ x,x }, { posX, posY });
+
+            posY += 80;
+            count++; 
+
+            if (count % 4 == 0) {
+                posX += 80;
+                posY = 105;
+            }
+
+
+
+        }
+        /*
         button[2].button({ x,x }, { 0.f, posY + 80 });
         button[3].button({ x,x }, { 0.f, posY + 160 });
         button[4].button({ x,x }, { 0.f, posY + 240 });
@@ -128,14 +148,16 @@ public:
         button[10].button({ x,x }, { 160.f, posY + 80 });
         button[11].button({ x,x }, { 160.f, posY + 160 });
         button[12].button({ x,x }, { 160.f, posY + 240 });
-
+*/
         //utilities
+        /*
         util_button[0].button({ x,45 }, { 240.f, posY });
         util_button[1].button({ x,45 }, { 240.f, posY + 55 });
         util_button[2].button({ x,45 }, { 240.f, posY + 110 });
         util_button[3].button({ x,45 }, { 240.f, posY + 165 });
         util_button[4].button({ x,95 }, { 240.f, posY + 220 });
-        
+        */
+
         // Enable anti-aliasing for the square
         sf::ContextSettings settings;
         settings.antialiasingLevel = 8; 
@@ -183,9 +205,11 @@ public:
             for (int i = 0; i < 13; i++) {
                 button[i].draw(window);
             }
+            /*
             for (int i = 0; i < 5; i++) {
                 util_button[i].draw(window);
             }
+            */
             textBox[1].draw(window);
 
 
