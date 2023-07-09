@@ -41,7 +41,7 @@ class Text {
 public:
 
 
-    void setText(string str,  sf::Vector2f position) {
+    void setText(int num,  sf::Vector2f position) {
 
 
         if (!font.loadFromFile("C:\\Fonts\\JAi.TTF")) {
@@ -50,6 +50,21 @@ public:
         }
 
         sf::Text text;
+
+        string str; 
+
+        if (num == 10) {
+            str = { "" };
+        }
+        else if (num == 11) {
+            str = { "0" };
+        }
+        else if (num == 12) {
+            str = { "" }; 
+        }
+        else {
+             str = std::to_string(num); // Convert integer back to string
+        }
 
         text.setFont(font);
         text.setString(str);
@@ -61,6 +76,47 @@ public:
 
 
     }
+    void setText_util(int num, sf::Vector2f position) {
+    
+        if (!font.loadFromFile("C:\\Fonts\\JAi.TTF")) {
+            cout << "Font load error";
+            return;
+        }
+
+        sf::Text text;
+
+        string str;
+
+
+        switch (num) {
+        case 0:
+            str = { "÷" }; 
+            break; 
+        case 1:
+            str = { "X" };
+            break;
+        case 2:
+            str = { "-" };
+            break;
+        case 3:
+            str = { "+" };
+            break;
+        case 4:
+            str = { "=" };
+            break;
+
+        }
+
+
+        text.setFont(font);
+        text.setString(str);
+        text.setCharacterSize(50);
+        text.setFillColor(sf::Color::White);
+        text.setPosition(position);
+
+        drawText = text;
+    }
+
 
     void draw(sf::RenderWindow& window) {
           window.draw(drawText);
@@ -88,47 +144,49 @@ public:
 
         //each button needs a 75x 
         std::vector<Buttons> button(13), util_button(5);
-        std::vector<Text> textBox(12);
+        std::vector<Text> numTxt(13), util_Txt(5);
 
         //main screen
         button[0].button({ 300,100 }, { 0.f, 0.f });
-        
-        //  textBox[1].setText("1", { (x/2) - 25,  posY });
-        
-        int count = 0; 
+                
         float posY = 105.f, posX = 0.f, x = 75.f;
-
         //initalizing button size and position
         for (int i = 1; i < 13; i++) {
 
-         
             button[i].button({ x,x }, { posX, posY });
 
-            posY += 80;
-            count++; 
+            if (i < 13) {
+                numTxt[i].setText(i, {posX,  posY });
+            }
+
+            posX += 80;
 
             //every 4th button in a row is the is followed by a new row
             //this is true for collums also
-            if (count % 4 == 0) {
-                posX += 80;
-                posY = 105;
+            if (i % 3 == 0) {
+                posX = 0;
+                posY += 80;
             }
 
         }
+
+        posY = 105.f; 
+        //initalizing utilitie buttons
         for (int i = 0; i < 5; i++) {
+        
+            // Equal size button
+            if (i < 4) {
+                util_button[i].button({ x, 45 }, { 240, posY });
+                util_Txt[i].setText_util(i, { x,  posY });
 
-            //equal size button
-            if (i == 4) {
-                util_button[i].button({ x, 95 }, { 240.f, 325.f });
-                
             }
-            //arithmatic buttons
+            // Arithmetic buttons
             else {
-
-                util_button[i].button({ x,45 }, { 240, posY });
-                posY += 55;
+                util_button[i].button({ x, 95 }, { 240.f, 325.f });
+                util_Txt[i].setText_util(i, {240.f, 325.f});
 
             }
+                posY += 55;
 
         }
 
@@ -178,15 +236,14 @@ public:
 
 
             for (int i = 0; i < 13; i++) {
+                if (i < 5) {
+                    util_button[i].draw(window);
+                    util_Txt[i].draw(window); 
+                        
+                }
                 button[i].draw(window);
+                numTxt[i].draw(window);
             }
-            
-            for (int i = 0; i < 5; i++) {
-                util_button[i].draw(window);
-            }
-            
-            textBox[1].draw(window);
-
 
             window.display();
 
