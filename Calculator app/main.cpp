@@ -7,30 +7,52 @@
 
 using namespace std;
 
-
-
 class Buttons {
 public:
 
-    //void Button();
+
+    /*
+
+    void setShapes(std::vector<sf::RectangleShape>& shapes) {
+        shapesRef = &shapes;
+    }
+    */
+    Buttons() {
+    };
 
     void button(sf::Vector2f size, sf::Vector2f position) {
        
         shape.setSize(size);
         shape.setFillColor(sf::Color(30,30,30));
         shape.setOutlineThickness(5); 
-        shape.setOutlineColor(sf::Color(135,206,235));
+        shape.setOutlineColor(sf::Color(48,0,48));
         shape.setPosition(position);      
 
-
     }
+  
 
 
+    /*
+    void button_press(sf::Vector2f& position) {
+        // Access the shapes vector here and perform necessary checks
+        for (auto& shape : *shapesRef) {
+
+            sf::FloatRect shapeBounds = shape.getGlobalBounds();
+
+            // Perform shape position checks
+            if (shapeBounds.contains(position))
+            {
+                // Clicked position is within the bounds of the current shape
+                // Perform the desired action for this shape
+            }
+        }
+    }
+    */
     void draw(sf::RenderWindow& window) {
         window.draw(shape);
     }
 
-    
+   
 private:
 
     sf::RectangleShape shape;
@@ -110,7 +132,7 @@ public:
 
         text.setFont(font);
         text.setString(str);
-        text.setCharacterSize(50);
+        text.setCharacterSize(25);
         text.setFillColor(sf::Color::White);
         text.setPosition(position);
 
@@ -149,6 +171,7 @@ public:
         //main screen
         button[0].button({ 300,100 }, { 0.f, 0.f });
                 
+
         float posY = 105.f, posX = 0.f, x = 75.f;
         //initalizing button size and position
         for (int i = 1; i < 13; i++) {
@@ -161,7 +184,7 @@ public:
 
             posX += 80;
 
-            //every 4th button in a row is the is followed by a new row
+            //every 3th number button in a row is the is followed by a new row
             //this is true for collums also
             if (i % 3 == 0) {
                 posX = 0;
@@ -171,13 +194,13 @@ public:
         }
 
         posY = 105.f; 
-        //initalizing utilitie buttons
+        //initalizing utility buttons
         for (int i = 0; i < 5; i++) {
         
             // Equal size button
             if (i < 4) {
                 util_button[i].button({ x, 45 }, { 240, posY });
-                util_Txt[i].setText_util(i, { x,  posY });
+                util_Txt[i].setText_util(i, { 240,  posY });
 
             }
             // Arithmetic buttons
@@ -217,6 +240,7 @@ public:
                 ///////////////////////////////////////
 
                 // ButtonDisplay(window);
+                //Buttons pos;
 
                 switch (event.type) {
 
@@ -225,9 +249,16 @@ public:
                     break; 
 
                 case (sf::Event::MouseButtonPressed):
-               
+                    //get mouse position
+                    sf::Vector2i mousePos = sf::Mouse::getPosition(window); 
+                    sf::Vector2f worldPos = window.mapPixelToCoords(mousePos);
+                    cout << "Mouse Position (World): x = " << worldPos.x << ", y = " << worldPos.y << std::endl;
 
-                default:
+                   // pos.setShapes(button[13]); 
+
+                  //  pos.button_press(worldPos); 
+
+             //   default:
                     break;
                 }
                
