@@ -44,6 +44,24 @@ public:
     }
     void button_press(int index) {
 
+
+        switch (index) {
+        case 1: cout << "1"; break; 
+        case 2: cout << "2"; break; 
+        case 3: cout << "3"; break; 
+        case 4: cout << "4"; break; 
+        case 5: cout << "5"; break; 
+        case 6: cout << "6"; break;
+        case 7: cout << "7"; break;
+        case 8: cout << "8"; break;
+        case 9: cout << "9"; break; 
+        case 11: cout << "0"; break;
+
+        default: cout << "INVALID"; break; 
+
+        }
+
+        /*
         if (index == 1) {
             cout << "1";
             
@@ -53,6 +71,7 @@ public:
         }
         else
             cout << "invalid"; 
+            */
     }
 
     /*
@@ -278,7 +297,8 @@ public:
                    // cout << worldPos.x,  worldPos.y;
                     // Check for button press
                     for (int i = 1; i < 13; i++) {
-                        if (button[i].getPosition() == worldPos) {
+                        if (button[1].contains(button[i].getGlobalBounds(), worldPos)) {
+                            //(button[i].getPosition() == worldPos) {
                             button[i].button_press(i);
                         }
                     }
