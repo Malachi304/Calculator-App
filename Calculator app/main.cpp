@@ -10,13 +10,6 @@ using namespace std;
 class Buttons {
 public:
 
-
-    /*
-
-    void setShapes(std::vector<sf::RectangleShape>& shapes) {
-        shapesRef = &shapes;
-    }
-    */
     Buttons() {
     };
 
@@ -42,6 +35,7 @@ public:
     bool contains(const sf::FloatRect& rect, const sf::Vector2f& position) {
         return rect.contains(position);
     }
+
     void button_press(int index) {
 
 
@@ -61,35 +55,7 @@ public:
 
         }
 
-        /*
-        if (index == 1) {
-            cout << "1";
-            
-        }
-        else if(index == 2) {
-            cout << "2";
-        }
-        else
-            cout << "invalid"; 
-            */
     }
-
-    /*
-    void button_press(sf::Vector2f& position) {
-        // Access the shapes vector here and perform necessary checks
-        for (auto& shape : *shapesRef) {
-
-            sf::FloatRect shapeBounds = shape.getGlobalBounds();
-
-            // Perform shape position checks
-            if (shapeBounds.contains(position))
-            {
-                // Clicked position is within the bounds of the current shape
-                // Perform the desired action for this shape
-            }
-        }
-    }
-    */
     void draw(sf::RenderWindow& window) {
         window.draw(shape);
     }
@@ -138,7 +104,6 @@ public:
 
         drawText = text;
 
-
     }
     void setText_util(int num, sf::Vector2f position) {
     
@@ -148,30 +113,21 @@ public:
         }
 
         sf::Text text;
-
         string str;
 
-
+        //utility text
         switch (num) {
-        case 0:
-            str = { "÷" }; 
-            break; 
-        case 1:
-            str = { "X" };
-            break;
-        case 2:
-            str = { "-" };
-            break;
-        case 3:
-            str = { "+" };
-            break;
-        case 4:
-            str = { "=" };
-            break;
+        case 0: str = { "÷" }; break; 
+        case 1: str = { "X" }; break;
+        case 2: str = { "-" }; break;
+        case 3: str = { "+" }; break;
+        case 4: str = { "=" }; break;
+
+        default: break; 
 
         }
 
-
+        //set text
         text.setFont(font);
         text.setString(str);
         text.setCharacterSize(25);
@@ -181,7 +137,7 @@ public:
         drawText = text;
     }
 
-
+    //draw text
     void draw(sf::RenderWindow& window) {
           window.draw(drawText);
     }
@@ -225,7 +181,7 @@ public:
 
             posX += 80;
 
-            //every 3th number button in a row is the is followed by a new row
+            //every 3 shapes in a row is the is followed by a new row
             //this is true for collums also
             if (i % 3 == 0) {
                 posX = 0;
@@ -265,7 +221,7 @@ public:
             window.clear(); 
 
        
-            // check all the window's events that 
+            //check all the window's events that 
             //were triggered since the last iteration of the loop
             while (window.pollEvent(event))
             {
@@ -280,9 +236,6 @@ public:
                 //
                 ///////////////////////////////////////
 
-                // ButtonDisplay(window);
-                //Buttons pos;
-
                 switch (event.type) {
 
                 case sf::Event::Closed:
@@ -290,32 +243,25 @@ public:
                     break; 
 
                 case (sf::Event::MouseButtonPressed):
-                    //get mouse position
+                    //get mouse position (pixel coordinates)
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window); 
+                    //convert to pixles to world coordinates
                     sf::Vector2f worldPos = window.mapPixelToCoords(mousePos);
 
-                   // cout << worldPos.x,  worldPos.y;
-                    // Check for button press
+                    // loop through buttons
                     for (int i = 1; i < 13; i++) {
+                        
+                        //check if mouse click falls within the bounds of a button
                         if (button[1].contains(button[i].getGlobalBounds(), worldPos)) {
-                            //(button[i].getPosition() == worldPos) {
+
+                            //match button index with number on dispay
                             button[i].button_press(i);
                         }
                     }
-
-                   // cout << "Mouse Position (World): x = " << worldPos.x << ", y = " << worldPos.y << std::endl;
-
-                   // pos.setShapes(button[13]); 
-
-                  //  pos.button_press(worldPos); 
-
-             //   default:
                     break;
                 }
                
-
             }
-
 
             for (int i = 0; i < 13; i++) {
                 if (i < 5) {
@@ -329,20 +275,17 @@ public:
 
             window.display();
 
-
         }
     }
 
 private: 
     sf::Event event;
-
 };
 
 
 //Mathematical procedures
 class claculator {
-
-    
+ 
     void operation() {
 
     }
@@ -353,7 +296,6 @@ int main()
     //call display constructor
     Display display; 
     display.mainDisplay(); 
-
 
     return 0;
 }
