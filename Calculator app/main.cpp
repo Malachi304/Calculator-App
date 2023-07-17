@@ -36,6 +36,7 @@ public:
         return rect.contains(position);
     }
 
+    /*
     void button_press(int index) {
 
 
@@ -56,6 +57,7 @@ public:
         }
 
     }
+    */
     void draw(sf::RenderWindow& window) {
         window.draw(shape);
     }
@@ -137,6 +139,25 @@ public:
         drawText = text;
     }
 
+    void button_press(int index) {
+
+        switch (index) {
+        case 1: cout << "1"; break;
+        case 2: cout << "2"; break;
+        case 3: cout << "3"; break;
+        case 4: cout << "4"; break;
+        case 5: cout << "5"; break;
+        case 6: cout << "6"; break;
+        case 7: cout << "7"; break;
+        case 8: cout << "8"; break;
+        case 9: cout << "9"; break;
+        case 11: cout << "0"; break;
+
+        default: cout << "INVALID"; break;
+
+        }
+    }
+
     //draw text
     void draw(sf::RenderWindow& window) {
           window.draw(drawText);
@@ -144,9 +165,7 @@ public:
 
 private: 
     sf::Text drawText;
-    sf::Font font;
-
-
+    sf::Font font; 
 };
 
 
@@ -165,6 +184,7 @@ public:
         //each button needs a 75x 
         std::vector<Buttons> button(13), util_button(5);
         std::vector<Text> numTxt(13), util_Txt(5);
+        Text text;
 
         //main screen
         button[0].button({ 300,100 }, { 0.f, 0.f });
@@ -255,7 +275,8 @@ public:
                         if (button[1].contains(button[i].getGlobalBounds(), worldPos)) {
 
                             //match button index with number on dispay
-                            button[i].button_press(i);
+                            text.button_press(i); 
+                           // button[i].button_press(i);
                         }
                     }
                     break;
@@ -285,10 +306,13 @@ private:
 
 //Mathematical procedures
 class claculator {
- 
-    void operation() {
-
+public: 
+    void operation(int num) {
+        
     }
+
+private:
+    std::vector <int> holder; 
 };
 
 int main()
