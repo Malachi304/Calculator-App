@@ -29,8 +29,31 @@ public:
         shape.setPosition(position);      
 
     }
-  
 
+    //get position of button
+    sf::Vector2f getPosition() {
+        return shape.getPosition(); 
+    }
+
+    sf::FloatRect getGlobalBounds() {
+        return shape.getGlobalBounds(); 
+    }
+
+    bool contains(const sf::FloatRect& rect, const sf::Vector2f& position) {
+        return rect.contains(position);
+    }
+    void button_press(int index) {
+
+        if (index == 1) {
+            cout << "1";
+            
+        }
+        else if(index == 2) {
+            cout << "2";
+        }
+        else
+            cout << "invalid"; 
+    }
 
     /*
     void button_press(sf::Vector2f& position) {
@@ -170,7 +193,6 @@ public:
 
         //main screen
         button[0].button({ 300,100 }, { 0.f, 0.f });
-                
 
         float posY = 105.f, posX = 0.f, x = 75.f;
         //initalizing button size and position
@@ -252,7 +274,16 @@ public:
                     //get mouse position
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window); 
                     sf::Vector2f worldPos = window.mapPixelToCoords(mousePos);
-                    cout << "Mouse Position (World): x = " << worldPos.x << ", y = " << worldPos.y << std::endl;
+
+                   // cout << worldPos.x,  worldPos.y;
+                    // Check for button press
+                    for (int i = 1; i < 13; i++) {
+                        if (button[i].getPosition() == worldPos) {
+                            button[i].button_press(i);
+                        }
+                    }
+
+                   // cout << "Mouse Position (World): x = " << worldPos.x << ", y = " << worldPos.y << std::endl;
 
                    // pos.setShapes(button[13]); 
 
