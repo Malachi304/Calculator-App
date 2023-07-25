@@ -36,28 +36,6 @@ public:
         return rect.contains(position);
     }
 
-    /*
-    void button_press(int index) {
-
-
-        switch (index) {
-        case 1: cout << "1"; break; 
-        case 2: cout << "2"; break; 
-        case 3: cout << "3"; break; 
-        case 4: cout << "4"; break; 
-        case 5: cout << "5"; break; 
-        case 6: cout << "6"; break;
-        case 7: cout << "7"; break;
-        case 8: cout << "8"; break;
-        case 9: cout << "9"; break; 
-        case 11: cout << "0"; break;
-
-        default: cout << "INVALID"; break; 
-
-        }
-
-    }
-    */
     void draw(sf::RenderWindow& window) {
         window.draw(shape);
     }
@@ -68,6 +46,39 @@ private:
     sf::RectangleShape shape;
 };
 
+
+//Mathematical procedures
+class Claculation {
+public:
+    void operation(int num) {
+        //if string is a number 0-9, convert to type int 
+        //else if string it a utlity, do operation
+     //   if (isNumber(x)) {
+            //int num = stoi(x);
+        num_holder.push_back(num);
+
+        int test_ans = 0;
+
+        if (num_holder.size() == 2) {
+            for (int i = 0; i < num_holder.size(); i++) {
+                test_ans =+ num_holder[i];
+            }
+        }
+        cout << endl << test_ans;
+
+        num_holder.clear();
+    }
+
+    
+
+private:
+    std::vector <int> num_holder;
+
+    // Helper function to check if a string is a number
+    bool isNumber(const string& str) {
+        return !str.empty() && std::all_of(str.begin(), str.end(), ::isdigit);
+    }
+};
 
 class Text {
 public:
@@ -139,33 +150,44 @@ public:
         drawText = text;
     }
 
-    void button_press(int index) {
+    //main text box display
+    void mainText(string x){
 
-        switch (index) {
-        case 1: cout << "1"; break;
-        case 2: cout << "2"; break;
-        case 3: cout << "3"; break;
-        case 4: cout << "4"; break;
-        case 5: cout << "5"; break;
-        case 6: cout << "6"; break;
-        case 7: cout << "7"; break;
-        case 8: cout << "8"; break;
-        case 9: cout << "9"; break;
-        case 11: cout << "0"; break;
-
-        default: cout << "INVALID"; break;
-
+       
+        if (!font.loadFromFile("C:\\Fonts\\JAi.TTF")) {
+            cout << "Font load error";
+            return;
         }
+        
+        sf::Text text;
+       // string str = std::to_string(x); 
+
+        //set text
+        text.setFont(font);
+        text.setString(x);
+        text.setCharacterSize(25);
+        text.setFillColor(sf::Color::White);
+        text.setPosition({ 0.f, 0.f });
+
+        drawMainText = text;
+
     }
 
     //draw text
     void draw(sf::RenderWindow& window) {
           window.draw(drawText);
     }
+    void drawMain(sf::RenderWindow& window) {
+        window.draw(drawMainText);
+
+    }
 
 private: 
     sf::Text drawText;
+    sf::Text drawMainText;
+
     sf::Font font; 
+    Claculation calc; 
 };
 
 
@@ -184,7 +206,8 @@ public:
         //each button needs a 75x 
         std::vector<Buttons> button(13), util_button(5);
         std::vector<Text> numTxt(13), util_Txt(5);
-        Text text;
+        Text mainText;
+        std::string inputNumber; // String to store the digits entered by the user
 
         //main screen
         button[0].button({ 300,100 }, { 0.f, 0.f });
@@ -270,16 +293,32 @@ public:
 
                     // loop through buttons
                     for (int i = 1; i < 13; i++) {
-                        
+
                         //check if mouse click falls within the bounds of a button
                         if (button[1].contains(button[i].getGlobalBounds(), worldPos)) {
-
                             //match button index with number on dispay
-                            text.button_press(i); 
-                           // button[i].button_press(i);
+                            if (i >= 0 && i <= 9) {
+                                // Append the digit to the inputNumber string
+                                inputNumber += std::to_string(i);
+                            }
+                            else if (i == 11) { // Button 0
+                                inputNumber += "0";
+                            }
+                            else if (i == 12) { // Clear button
+                                inputNumber.clear(); // Clear the input
+                            }
+                            else { // Other utility buttons
+                                break; 
+                            }
+
+                            // Update the main text with the current input
+                            mainText.mainText(inputNumber);
                         }
+                        //utility push
+                      //  else if ()
+                                   
                     }
-                    break;
+                    break; 
                 }
                
             }
@@ -293,6 +332,7 @@ public:
                 button[i].draw(window);
                 numTxt[i].draw(window);
             }
+            mainText.drawMain(window);
 
             window.display();
 
@@ -301,19 +341,9 @@ public:
 
 private: 
     sf::Event event;
+
 };
 
-
-//Mathematical procedures
-class claculator {
-public: 
-    void operation(int num) {
-        
-    }
-
-private:
-    std::vector <int> holder; 
-};
 
 int main()
 {
@@ -323,3 +353,5 @@ int main()
 
     return 0;
 }
+
+
