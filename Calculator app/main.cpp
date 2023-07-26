@@ -97,13 +97,13 @@ public:
         string str; 
 
         if (num == 10) {
-            str = { "" };
+            str = { "." };
         }
         else if (num == 11) {
             str = { "0" };
         }
         else if (num == 12) {
-            str = { "" }; 
+            str = { "C" }; 
         }
         else {
              str = std::to_string(num); // Convert integer back to string
@@ -277,6 +277,7 @@ public:
                 //
                 // 2.) Case for button push(left mouse click)
                 //
+                // 3.) case for button push (keys)
                 ///////////////////////////////////////
 
                 switch (event.type) {
@@ -307,6 +308,9 @@ public:
                             else if (i == 12) { // Clear button
                                 inputNumber.clear(); // Clear the input
                             }
+                            else if (i == 10) { // Clear button
+                                inputNumber +="."; // Clear the input
+                            }
                             else { // Other utility buttons
                                 break; 
                             }
@@ -319,6 +323,35 @@ public:
                                    
                     }
                     break; 
+                    /*
+                case (sf::Event::KeyPressed):
+                    
+                    // loop through buttons
+                    for (int i = 1; i < 13; i++) {
+
+                        //check if mouse click falls within the bounds of a button
+                        if (button[1].contains(button[i].getGlobalBounds(), worldPos)) {
+                            //match button index with number on dispay
+                            if (i >= 0 && i <= 9) {
+                                // Append the digit to the inputNumber string
+                                inputNumber += std::to_string(i);
+                            }
+                            else if (i == 11) { // Button 0
+                                inputNumber += "0";
+                            }
+                            else if (i == 12) { // Clear button
+                                inputNumber.clear(); // Clear the input
+                            }
+                            else { // Other utility buttons
+                                break;
+                            }
+
+                            // Update the main text with the current input
+                            mainText.mainText(inputNumber);
+                        }
+
+                    }
+                    break;*/
                 }
                
             }
