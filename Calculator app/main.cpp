@@ -131,7 +131,7 @@ public:
         //utility text
         switch (num) {
         case 0: str = { "÷" }; break; 
-        case 1: str = { "X" }; break;
+        case 1: str = { "*" }; break;
         case 2: str = { "-" }; break;
         case 3: str = { "+" }; break;
         case 4: str = { "=" }; break;
@@ -296,7 +296,7 @@ public:
                     for (int i = 1; i < 13; i++) {
 
                         //check if mouse click falls within the bounds of a button
-                        if (button[1].contains(button[i].getGlobalBounds(), worldPos)) {
+                        if (button[i].contains(button[i].getGlobalBounds(), worldPos)) {
                             //match button index with number on dispay
                             if (i >= 0 && i <= 9) {
                                 // Append the digit to the inputNumber string
@@ -309,20 +309,46 @@ public:
                                 inputNumber.clear(); // Clear the input
                             }
                             else if (i == 10) { // Clear button
-                                inputNumber +="."; // Clear the input
-                            }
-                            else { // Other utility buttons
-                                break; 
+                                inputNumber += "."; // Clear the input
                             }
 
                             // Update the main text with the current input
                             mainText.mainText(inputNumber);
                         }
-                        //utility push
-                      //  else if ()
-                                   
+                       // else break; 
+                     }
+
+                    for (int j = 0; j < 5; j++) {
+                        if (util_button[j].contains(util_button[j].getGlobalBounds(), worldPos)) {
+                            if (j == 0) {
+                                inputNumber += "÷";
+                            }
+                            else if (j == 1) {
+                                inputNumber += "*";
+                            }
+                            else if (j == 2) {
+                                inputNumber += "-";
+                            }
+                            else if (j == 3) {
+                                inputNumber += "+";
+                            }
+                            else if (j == 4) {
+                                inputNumber += "=";
+                            }
+
+
+                            mainText.mainText(inputNumber);
+
+                        }
+
+
+                  //    else if (util_button[i].contains(button[i].getGlobalBounds(), worldPos)){
+
+
+                //    }
+                                 
                     }
-                    break; 
+                  //  break; 
                     /*
                 case (sf::Event::KeyPressed):
                     
